@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function loadAll() {
+            $('#topSenderIps').load("/v1/ui/fragment/topSenderIps");
+            $('#topSenderAsns').load("/v1/ui/fragment/topSenderAsns");
+            $('#topSenderDomains').load("/v1/ui/fragment/topSenderDomains");
+            $('#topRecipientDomains').load("/v1/ui/fragment/topRecipientDomains");
+            $('#topCountries').load("/v1/ui/fragment/topCountries");
+            $('#topUrlDomains').load("/v1/ui/fragment/topUrlDomains");
+            $('#topUrls').load("/v1/ui/fragment/topUrls");
+        }
+
+        $(function () {
+            loadAll();
+            window.setInterval(loadAll, 5000);
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <div class="page-header">
+            <h1>Real-time Dashboard</h1>
+        </div>
+        <div class="row">
+            <div class="span5">
+                <h2>Sender IPs</h2>
+                <div id="topSenderIps">
+                    Loading...
+                </div>
+            </div>
+
+            <div class="span5">
+                <h2>Sender Domains</h2>
+                <div id="topSenderDomains">
+                    Loading...
+                </div>
+            </div>
+
+            <div class="span5">
+                <h2>Recipient Domains</h2>
+                <div id="topRecipientDomains">
+                    Loading...
+                </div>
+            </div>
+
+            <div class="span5">
+                <h2>Countries</h2>
+                <div id="topCountries">
+                    Loading...
+                </div>
+            </div>
+
+            <div class="span5">
+                <h2>Url Domains</h2>
+                <div id="topUrlDomains">
+                    Loading...
+                </div>
+            </div>
+
+            <div class="span5">
+                <h2>Urls</h2>
+                <div id="topUrls">
+                    Loading...
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- /container -->
+
+</body>
+</html>
+

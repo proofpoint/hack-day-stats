@@ -31,7 +31,7 @@ public class TestStatsResource
     @BeforeMethod
     public void setup()
     {
-        resource = new StatsResource();
+        resource = new StatsResource(new Store());
     }
 
     @Test

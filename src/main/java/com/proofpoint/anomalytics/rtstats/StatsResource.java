@@ -17,6 +17,7 @@ package com.proofpoint.anomalytics.rtstats;
 
 import com.google.common.base.Preconditions;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -34,13 +35,19 @@ import java.util.concurrent.ConcurrentHashMap;
 @Path("/v1/stats")
 public class StatsResource
 {
-    private Map<String, Object> store = new ConcurrentHashMap<String, Object>();
+    private final Store store;
+
+    @Inject
+    public StatsResource(Store store)
+    {
+        this.store = store;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll()
     {
-        return Response.ok(store).build();
+        return Response.ok(store.getAll()).build();
     }
 
     @GET
@@ -50,7 +57,7 @@ public class StatsResource
     {
         Preconditions.checkNotNull(key, "key must not be null");
 
-        Object data = store.get(key);
+        Object data = store.getCurrent(key);
 
         if (data == null) {
             return Response.status(Response.Status.NOT_FOUND).entity("[" + key + "]").build();

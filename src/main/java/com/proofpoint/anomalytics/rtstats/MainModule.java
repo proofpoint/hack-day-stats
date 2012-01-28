@@ -30,6 +30,9 @@ public class MainModule
         binder.disableCircularProxies();
 
         binder.bind(StatsResource.class).in(Scopes.SINGLETON);
+        binder.bind(UIResource.class).in(Scopes.SINGLETON);
+        binder.bind(IndexResource.class).in(Scopes.SINGLETON);
+        binder.bind(Store.class).in(Scopes.SINGLETON);
 
         discoveryBinder(binder).bindHttpAnnouncement("realtime-stats");
     }
